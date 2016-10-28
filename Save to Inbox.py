@@ -31,9 +31,6 @@ if appex.is_running_extension():
             if os.path.isfile(destination):
                 os.remove(destination)
                 print('Existing file at destination removed.')
-            elif os.path.isdir(destination):
-                rmtree(destination)
-                print('Existing directory at destination removed.')
 
             copyfile(source, destination)
             print('%s > %s' % (os.path.basename(source), os.path.basename(inboxpath)))
@@ -48,6 +45,9 @@ if appex.is_running_extension():
                     os.remove(destination)
                 print('Unzipped')
         elif os.path.isdir(source):
+            if os.path.isdir(destination):
+                rmtree(destination)
+                print('Existing directory at destination removed.')
             copytree(source, destination)
             print('%s > %s' % (os.path.basename(source), os.path.basename(inboxpath)))
 
